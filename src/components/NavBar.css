@@ -1,0 +1,65 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+}
+
+nav{
+    background-color: lightseagreen;
+    width: 100%;
+    height: 84px;
+}
+
+.logo{
+    line-height: 80px;
+}
+
+.logo a{
+    color: white;
+    font-size: 30px;
+}
+
+nav ul{
+    float: left;
+    margin-right: 5%;
+}
+
+nav ul li{
+    display: block;
+    line-height: 80px;
+    margin-left: 50px;
+}
+
+nav ul li a{
+    color: white;
+    font-size: 25px;
+}
+
+nav li ul{
+    display: none;
+    position: absolute;
+}
+
+nav ul li a:hover{
+    color: lightsalmon;
+}
+
+.logo img{
+    width: 130px;
+    height: 80px;
+}
+
+.navmenu > li{
+    float: left;
+}
+
+.navmenu li:hover > ul{
+    display: block;
+}
+
+.submenu ul li{
+    background-color: lightseagreen;
+}
+
