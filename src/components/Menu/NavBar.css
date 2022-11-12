@@ -1,0 +1,25 @@
+img{
+    width: 110px;
+    height: 60px;
+}
+
+.navbar{
+    background-color: lightseagreen;
+}
+
+.dropdown-menu{
+background-color: darkslategray ;
+}
+
+a.nav-link:hover{
+    color: blue;
+}
+
+a.dropdown-item{
+    color: white;
+}
+
+a.dropdown-item:hover{
+    color: blue;
+    background-color: lightseagreen;
+}
