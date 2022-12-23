@@ -5,15 +5,18 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Carrito from '../CartWidget/CartWidget.js';
 import { Link } from 'react-router-dom';
 import './NavBar.css';
+import { useCartContext } from '../../Context/CartContext.js';
 
 const Menu = () => {
+  const { cantidadTotal } = useCartContext();
   return (
     <Navbar collapseOnSelect expand="lg" variant="dark">
       <Container>
-        <Navbar.Brand><Link to='/'><Carrito /></Link></Navbar.Brand>
+        <Navbar.Brand><Link to='/cart'><Carrito />{ cantidadTotal() !== 0 && cantidadTotal()}</Link></Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
+          <Nav.Link><Link to='/'>Inicio</Link></Nav.Link>
             <NavDropdown title="Categorias" id="collasible-nav-dropdown">
               <NavDropdown.Item><Link to='/categoria/plantas'>Plantas</Link></NavDropdown.Item>
               <NavDropdown.Divider />
@@ -21,7 +24,6 @@ const Menu = () => {
               <NavDropdown.Divider />
               <NavDropdown.Item><Link to='/categoria/accesorios'>Accesorios</Link></NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link><Link to='/cart'>Carrito</Link></Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

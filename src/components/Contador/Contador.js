@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Button } from "react-bootstrap"
 
-const Contador = ({ initial, stock, onAdd }) => {
+const Contador = ({ initial, stock, onAdd, handleInter }) => {
   const [count, setCount] = useState(1);
 
   const sumarCantidad = () => {
@@ -18,6 +18,7 @@ const Contador = ({ initial, stock, onAdd }) => {
 
   const addCantidad = () => {
     onAdd(count);
+    handleInter('input');
   }
 
   return (

@@ -1,15 +1,6 @@
-import Contador from '../Contador/Contador';
-import { useCartContext } from '../../Context/CartContext';
+import Intercambiabilidad from '../Intercambiabilidad/Intercambiabilidad';
 
 const ItemDetail = ({ product }) => {
-    const { cartList, addCarrito } = useCartContext();
-
-    const onAdd = (cantidad) => {
-        addCarrito( { ...product, cantidad } )
-    }
-
-    console.log(cartList);
-
     return (
         <div>
             <center>
@@ -29,7 +20,7 @@ const ItemDetail = ({ product }) => {
                         stock : {product.stock}
                     </div>
                 </div>
-                <Contador initial={1} stock={product.stock} onAdd={onAdd} />
+                <Intercambiabilidad product= {product} stock={product.stock} />
             </center>
 
         </div>

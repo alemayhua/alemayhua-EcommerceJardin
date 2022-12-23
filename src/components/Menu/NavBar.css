@@ -7,19 +7,33 @@ img{
     background-color: lightseagreen;
 }
 
+.navbar-brand a{
+    color: white;
+    text-decoration: none;
+}
+
 .dropdown-menu{
 background-color: darkslategray ;
 }
 
-a.nav-link:hover{
+.dropdown-item:hover{
+    background-color: #008080;
+}
+
+.nav-link a:hover{
     color: blue;
 }
 
-a.dropdown-item{
+.nav-link a{
+    text-decoration: none;
     color: white;
 }
 
-a.dropdown-item:hover{
+.dropdown-item a{
+    color: white;
+    text-decoration: none;
+}
+
+.dropdown-item a:hover{
     color: blue;
-    background-color: lightseagreen;
 }
