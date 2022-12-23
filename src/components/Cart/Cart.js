@@ -7,6 +7,7 @@ import { useState } from 'react';
 export const Cart = () => {
   const { cartList, borrarCarrito, precioTotal, eliminarItem } = useCartContext();
   const [b, setB] = useState(0);
+  const [idCompra, setIdCompra] = useState();
   const [dataForm, setDataForm] = useState({
     nombre: '',
     email: '',
@@ -22,21 +23,21 @@ export const Cart = () => {
       orden.items = cartList.map(product => ({ id: product.id, name: product.name, price: product.price }));
       const db = getFirestore();
       const queryCollection = collection(db, 'ordenes');
-      addDoc(queryCollection, orden)
-        .finally(() => setDataForm({
-          nombre: '',
-          email: '',
-          repetirEmail: '',
-          telefono: ''
-        }),
-          borrarCarrito(),
-          setB(1)
-        )
+        addDoc(queryCollection, orden)
+          .then(resp => setIdCompra(resp.id))
+          .finally(() => setDataForm({
+            nombre: '',
+            email: '',
+            repetirEmail: '',
+            telefono: ''
+          }),
+            borrarCarrito(),
+            setB(1)
+          )
     } else {
       alert('ERROR: Los emails no coinciden')
       return false
     }
-
     //atualizar
     // const queryDoc = doc(db, 'items', 'GgbFL4U0x5DSzWLWpawN');
     // updateDoc(queryDoc, {
@@ -57,7 +58,7 @@ export const Cart = () => {
     precioTotal() === 0
       ?
       <center>
-        <h2 style={b === 0 ? {color:'red'} : {color:'green'}}>{b === 0 ? '¡¡CARRITO VACIO!!' : '¡¡MUCHAS GRACIAS POR SU COMPRA!!'}</h2>
+        <h2 style={b === 0 ? { color: 'red' } : { color: 'green' }}>{b === 0 ? '¡¡CARRITO VACIO!!' : `¡¡MUCHAS GRACIAS POR SU COMPRA!! ID de compra: ${idCompra}`}</h2>
         <Link to='/'>
           <Button variant="secondary" size="sm">
             Ir a comprar
@@ -89,7 +90,7 @@ export const Cart = () => {
             <input type="text" name='email' onChange={handelOnChange} value={dataForm.email} placeholder='Ingrese Mail' required /><br /><br />
             <input type="text" name='repetirEmail' onChange={handelOnChange} value={dataForm.repetirEmail} placeholder='Repetir Mail' required /><br /><br />
             <input type="text" name='telefono' onChange={handelOnChange} value={dataForm.telefono} placeholder='Ingrese Teléfono' required /><br /><br />
-            <Button variant="secondary" size="sm" type='submit'>
+            <Button id='enviar' variant="secondary" size="sm" type='submit'>
               Generar Orden
             </Button>
           </form>

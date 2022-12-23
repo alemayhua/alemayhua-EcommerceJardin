@@ -11,10 +11,12 @@ const ItemDetailContainer = () => {
   useEffect(() => {
     const db = getFirestore();
     const queryCollection = doc(db, 'items', productId);
-    getDoc(queryCollection)
+    setTimeout(() => {  
+      getDoc(queryCollection)
       .then((doc) => setProduct({ id: doc.id, ...doc.data() }))
       .catch(reject => console.log(reject))
       .finally(() => setLoading(false))
+    }, 1000);
   }, [productId])
 
   // useEffect(() => {
